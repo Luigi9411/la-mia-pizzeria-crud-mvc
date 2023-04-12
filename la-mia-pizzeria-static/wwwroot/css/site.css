@@ -51,6 +51,7 @@ main{
 
 ul {
     display:flex;
+    flex-wrap:wrap;
     list-style-type:none;
     gap: 3em
 }
@@ -63,6 +64,11 @@ a {
 .navb {
     background-color: gray;
     height:3.5em;
+}
+
+.bt{
+    display:flex;
+    gap:3em;
 }
 
 
