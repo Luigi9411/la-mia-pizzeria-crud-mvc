@@ -12,12 +12,12 @@
             <a class="card-title ms-lg-3" href="@Url.Action("Detail", "Pizza", new { Id = pizza.Id })">@pizza.Name</a>
             </h4>
             <p class="card-text ms-lg-3">@pizza.Description</p>
-            @*<p>@pizza.Category!.Title</p>*@
+            <p>@pizza.Category!.Title</p>
             <h6 class="ms-lg-3">@pizza.Price $</h6>
             <div class="bt">
                 <button class="btn btn-secondary mt-3">
                     <a href="@Url.Action("Update","Pizza", new { Id = pizza.Id })" class="text-black">Edit</a>
-            </button>
+                </button>
             <form asp-action="Delete" asp-controller="Pizza" asp-route-id="@pizza.Id">
                 @Html.AntiForgeryToken()
                     <button type="submit" class="btn btn-secondary mt-3 text-black">Delete</button>

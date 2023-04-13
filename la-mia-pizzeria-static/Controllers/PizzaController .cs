@@ -1,6 +1,7 @@
 ﻿using la_mia_pizzeria_static.Migrations;
 using la_mia_pizzeria_static.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using System.Diagnostics;
 
@@ -20,7 +21,7 @@ namespace la_mia_pizzeria_static.Controllers
         public IActionResult Index()
         {
 
-            var pizzas = _context.Pizzas.ToArray();
+            var pizzas = _context.Pizzas.Include(p => p.Category).ToArray();
 
             return View(pizzas);
         }
@@ -44,7 +45,7 @@ namespace la_mia_pizzeria_static.Controllers
             {
                 Categories = _context.Categories.ToArray(),
             };
-            return View();
+            return View(formModel);
         }
 
         [HttpPost]
