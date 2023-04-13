@@ -6,6 +6,7 @@ namespace la_mia_pizzeria_static.Models
     {
         public PizzaContext(DbContextOptions<PizzaContext> options) : base(options) { }
         public DbSet<Pizza> Pizzas { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         public void Seed()
         {
@@ -46,8 +47,32 @@ namespace la_mia_pizzeria_static.Models
 
                 Pizzas.AddRange(seed);
 
-                SaveChanges();
             }
+
+            if (!Categories.Any())
+                {
+                var seed = new Category[]
+                  {
+                      new Category
+                      {
+                          Title = "Pizze classiche",
+                      },
+                      new Category
+                      {
+                          Title = "Pizze bianche",
+                      },
+                      new Category
+                      {
+                          Title = "Pizze vegetariane",
+                      },
+                      new Category
+                      {
+                          Title = "Pizze di mare",
+                      }
+                  };
+                Categories.AddRange(seed);
+            }
+                SaveChanges();
         }
     }
 }

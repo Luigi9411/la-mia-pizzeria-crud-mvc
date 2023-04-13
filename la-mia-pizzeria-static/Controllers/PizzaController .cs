@@ -40,23 +40,28 @@ namespace la_mia_pizzeria_static.Controllers
 
         public IActionResult Create()
         {
+            var formModel = new PizzaFormModel
+            {
+                Categories = _context.Categories.ToArray(),
+            };
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Pizza pizza)
+        public IActionResult Create(PizzaFormModel form)
         {
             if (!ModelState.IsValid)
             {
-               return View(pizza);
+                form.Categories = _context.Categories.ToArray();
+               return View(form);
             }
 
-            _context.Pizzas.Add(pizza);
+            _context.Pizzas.Add(form.Pizza);
             _context.SaveChanges();
 
             return RedirectToAction("Index");
-        }
+        } 
 
         public IActionResult Update(int id)
         {
@@ -67,16 +72,22 @@ namespace la_mia_pizzeria_static.Controllers
                 return View("NotFound");
             }
 
-            return View(pizza);
+            var formModel = new PizzaFormModel
+            {
+                Pizza = pizza,
+                Categories = _context.Categories.ToArray()
+            };
+
+            return View(formModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(int id, Pizza pizza)
+        public IActionResult Update(int id, PizzaFormModel form)
         {
             if (!ModelState.IsValid)
             {
-                return View(pizza);
+                return View(form);
             }
 
             var pizzaToUpdate = _context.Pizzas.Find(id);
@@ -86,10 +97,10 @@ namespace la_mia_pizzeria_static.Controllers
                 return View("NotFound");
             }
 
-            pizzaToUpdate.Name = pizza.Name;
-            pizzaToUpdate.Description = pizza.Description;
-            pizzaToUpdate.Image = pizza.Image;
-            pizzaToUpdate.Price = pizza.Price; 
+            pizzaToUpdate.Name = form.Pizza.Name;
+            pizzaToUpdate.Description = form.Pizza.Description;
+            pizzaToUpdate.Image = form.Pizza.Image;
+            pizzaToUpdate.Price = form.Pizza.Price; 
 
             _context.SaveChanges();
 

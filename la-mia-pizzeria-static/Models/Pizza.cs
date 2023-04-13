@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using la_mia_pizzeria_static.Nuova_cartella1;
+using System.ComponentModel.DataAnnotations;
 
 namespace la_mia_pizzeria_static.Models
 {
@@ -20,6 +21,10 @@ namespace la_mia_pizzeria_static.Models
         [Range(3, double.MaxValue)]
         
         public double Price { get; set; }
+
+        [NonZeroAttribute(ErrorMessage = "Please pick a category.")]
+        public int? CategoryId { get; set; }
+        public Category? Category { get; set; }
 
     }
 }
