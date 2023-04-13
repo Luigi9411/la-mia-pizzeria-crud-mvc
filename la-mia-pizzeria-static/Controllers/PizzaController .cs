@@ -29,7 +29,7 @@ namespace la_mia_pizzeria_static.Controllers
         public IActionResult Detail(int id)
         {
 
-            var pizza = _context.Pizzas.Find(id);
+            var pizza = _context.Pizzas.Include(p => p.Category).SingleOrDefault(p => p.Id == id); 
 
             if (pizza is null)
             {
@@ -101,7 +101,8 @@ namespace la_mia_pizzeria_static.Controllers
             pizzaToUpdate.Name = form.Pizza.Name;
             pizzaToUpdate.Description = form.Pizza.Description;
             pizzaToUpdate.Image = form.Pizza.Image;
-            pizzaToUpdate.Price = form.Pizza.Price; 
+            pizzaToUpdate.Price = form.Pizza.Price;
+            pizzaToUpdate.CategoryId = form.Pizza.CategoryId;
 
             _context.SaveChanges();
 
