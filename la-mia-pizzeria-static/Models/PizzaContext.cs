@@ -19,6 +19,7 @@ namespace la_mia_pizzeria_static.Models
             {
                 Name = "Pizza Margherita",
                 Description = "Pizza classica dal gusto inconfondibile.",
+                CategoryId = 1,
                 Image = "img/margherita-50kalo.jpg",
                 Price = 4,
             },
@@ -26,6 +27,7 @@ namespace la_mia_pizzeria_static.Models
             {
                 Name = "Americana",
                 Description = "Pizza che De Sica definirebbe con: 'Che è sta cafonata'.",
+                CategoryId = 2,
                 Image = "img/americana.jpg",
                 Price = 5,
             },
@@ -33,6 +35,7 @@ namespace la_mia_pizzeria_static.Models
             {
                 Name = "Diavola",
                 Description = "Pizza leggera ma quel pizzico in più.",
+                CategoryId = 1,
                 Image = "img/diavola.jpg",
                 Price = 4.5,
             },
@@ -40,6 +43,7 @@ namespace la_mia_pizzeria_static.Models
             {
                 Name = "Capricciosa",
                 Description = "Pizza amata dal ristoratore. Gli permette di liberarsi dei condimenti",
+                CategoryId = 3,
                 Image = "img/Capricciosa.jpg",
                 Price = 6.5,
             }
