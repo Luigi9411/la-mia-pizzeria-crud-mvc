@@ -8,12 +8,13 @@ namespace la_mia_pizzeria_static.Models
         public DbSet<Pizza> Pizzas { get; set; }
         public DbSet<Category> Categories { get; set; }
 
+        public DbSet<Ingredient> Ingredients { get; set; }
+
         public void Seed()
         {
 
-            if (!Pizzas.Any())
-            {
-                var seed = new Pizza[]
+           
+                var pizzaSeed = new Pizza[]
                 {
             new Pizza
             {
@@ -48,8 +49,9 @@ namespace la_mia_pizzeria_static.Models
                 Price = 6.5,
             }
             };
-
-                Pizzas.AddRange(seed);
+            if (!Pizzas.Any())
+            {
+                Pizzas.AddRange(pizzaSeed);
 
             }
 
@@ -75,6 +77,31 @@ namespace la_mia_pizzeria_static.Models
                       }
                   };
                 Categories.AddRange(seed);
+            }
+
+            if (!Ingredients.Any())
+            {
+                var seed = new Ingredient[]
+                {
+                    new()
+                    {
+                        Name = "Farina",
+                    },
+                    new()
+                    {
+                        Name = "Mozzarella",
+                    },
+                    new()
+                    {
+                        Name = "Pomodoro",
+                        Pizzas = pizzaSeed
+                    },
+                    new()
+                    {
+                        Name = "Patate",
+                    },
+                };
+                Ingredients.AddRange(seed);
             }
                 SaveChanges();
         }

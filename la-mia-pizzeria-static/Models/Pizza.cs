@@ -15,7 +15,14 @@ namespace la_mia_pizzeria_static.Models
         public string Description { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Aggiungi l'immagine")]
-        public string? Image {get; set;}
+        public string Image { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Aggiungi l'immagine")]
+        public byte[]? ImageFile { get; set; } = new byte[0];
+
+        public string ImgSrc => ImageFile is null
+            ? Image
+            : $"data:image/png;base64,{Convert.ToBase64String(ImageFile)}";
 
         [Required(ErrorMessage = "Aggiungi il prezzo")]
         [Range(3, double.MaxValue)]
@@ -25,6 +32,8 @@ namespace la_mia_pizzeria_static.Models
         [NonZeroAttribute(ErrorMessage = "Please pick a category.")]
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }
+
+        public IEnumerable<Ingredient>? Ingredients { get; set;}
 
     }
 }
